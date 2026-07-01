@@ -36,8 +36,7 @@ def plot_distribution_at_risk(df: pd.DataFrame, output_file: Path) -> None:
     labels = ['No Risk', 'At Risk']
 
     plt.figure(figsize=(8, 6))
-    sns.barplot(x=counts.index, y=counts.values, palette='muted')
-    plt.xticks([0, 1], labels)
+    sns.barplot(x=labels, y=counts.values, hue=labels, palette='muted', dodge=False, legend=False)
     plt.xlabel('Academic Risk')
     plt.ylabel('Number of Students')
     plt.title('Distribución de estudiantes por riesgo académico')
@@ -55,7 +54,7 @@ def plot_risk_by_category(df: pd.DataFrame, category: str, output_file: Path) ->
     df_plot['AT_RISK_BINARY'] = (df_plot['AT-RISK COURSE'] > 0).astype(int)
     group = df_plot.groupby(category)['AT_RISK_BINARY'].mean().sort_values(ascending=False)
     plt.figure(figsize=(10, 6))
-    sns.barplot(x=group.values, y=group.index, palette='coolwarm')
+    sns.barplot(x=group.values, y=group.index, hue=group.index, palette='coolwarm', dodge=False, legend=False)
     plt.xlabel('Proporción de estudiantes en riesgo')
     plt.ylabel(category)
     plt.title(f'Riesgo académico por {category}')

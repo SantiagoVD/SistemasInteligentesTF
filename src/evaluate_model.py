@@ -30,7 +30,7 @@ def save_feature_importance(model, feature_names, output_file: Path, top_n: int 
     top_importances = importances[indices]
 
     plt.figure(figsize=(9, 7))
-    sns.barplot(x=top_importances, y=top_features, palette='viridis')
+    sns.barplot(x=top_importances, y=top_features, hue=top_features, palette='viridis', dodge=False, legend=False)
     plt.xlabel('Importance')
     plt.ylabel('Feature')
     plt.title('Feature Importance (top {} variables)'.format(top_n))
