@@ -2,7 +2,7 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
+
 import seaborn as sns
 from sklearn.metrics import (accuracy_score, classification_report, confusion_matrix,
                              f1_score, precision_score, recall_score, roc_auc_score)
@@ -11,7 +11,7 @@ from sklearn.metrics import (accuracy_score, classification_report, confusion_ma
 def save_confusion_matrix(y_true, y_pred, output_file: Path) -> None:
     """Guardar la matriz de confusión como una imagen."""
     cm = confusion_matrix(y_true, y_pred)
-    plt.figure(figsize=(6, 5))
+    plt.figure(figsize=(8, 7))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', cbar=False)
     plt.xlabel('Predicted')
     plt.ylabel('Actual')
@@ -29,7 +29,7 @@ def save_feature_importance(model, feature_names, output_file: Path, top_n: int 
     top_features = [feature_names[i] for i in indices]
     top_importances = importances[indices]
 
-    plt.figure(figsize=(10, 8))
+    plt.figure(figsize=(9, 7))
     sns.barplot(x=top_importances, y=top_features, palette='viridis')
     plt.xlabel('Importance')
     plt.ylabel('Feature')
